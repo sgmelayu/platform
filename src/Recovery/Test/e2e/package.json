@@ -5,10 +5,16 @@
   "description": "E2E Test suite for the installer",
   "license": "MIT",
   "dependencies": {
-    "@shopware-ag/e2e-testsuite-platform": "^1.1.1"
+    "@shopware-ag/e2e-testsuite-platform": "^1.1.1",
+    "snyk": "^1.316.1"
   },
   "engines": {
     "node": ">= 8.10.0",
     "npm": ">= 6.5.0"
-  }
+  },
+  "scripts": {
+    "snyk-protect": "snyk protect",
+    "prepare": "npm run snyk-protect"
+  },
+  "snyk": true
 }
