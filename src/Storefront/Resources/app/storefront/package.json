@@ -20,7 +20,9 @@
     "production": "NODE_ENV=production webpack --config webpack.config.js",
     "unit": "jest --config jest.config.js --ci && npm run lint",
     "unit-watch": "jest --config jest.config.js --watch",
-    "watch": "NODE_ENV=development MODE=watch webpack --watch --config webpack.config.js"
+    "watch": "NODE_ENV=development MODE=watch webpack --watch --config webpack.config.js",
+    "snyk-protect": "snyk protect",
+    "prepare": "npm run snyk-protect"
   },
   "dependencies": {
     "@shopware-ag/webpack-plugin-injector": "1.0.3",
@@ -39,7 +41,7 @@
     "history": "4.9.0",
     "imports-loader": "0.8.0",
     "intersection-observer": "0.7.0",
-    "jquery": "3.4.1",
+    "jquery": "3.5.0",
     "mini-css-extract-plugin": "0.8.0",
     "nunito-fontface": "0.7.3",
     "object-fit-images": "3.2.4",
@@ -52,7 +54,8 @@
     "terser-webpack-plugin": "2.2.3",
     "tiny-slider": "2.9.2",
     "webpack": "4.38.0",
-    "webpackbar": "3.2.0"
+    "webpackbar": "3.2.0",
+    "snyk": "^1.316.1"
   },
   "devDependencies": {
     "@babel/cli": "7.5.5",
@@ -89,5 +92,6 @@
     "webpack-cli": "3.3.6",
     "webpack-dev-server": "3.7.2",
     "webpack-merge": "4.2.1"
-  }
+  },
+  "snyk": true
 }
