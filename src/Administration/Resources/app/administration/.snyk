@@ -1,0 +1,60 @@
+# Snyk (https://snyk.io) policy file, patches or ignores known vulnerabilities.
+version: v1.14.1
+ignore: {}
+# patches apply the minimum changes required to fix a vulnerability
+patch:
+  SNYK-JS-LODASH-567746:
+    - lodash:
+        patched: '2020-05-01T07:55:45.820Z'
+    - webpack-merge > lodash:
+        patched: '2020-05-01T07:55:45.820Z'
+    - '@vue/test-utils > lodash':
+        patched: '2020-05-01T07:55:45.820Z'
+    - npm-check-updates > lodash:
+        patched: '2020-05-01T07:55:45.820Z'
+    - webpack-bundle-analyzer > lodash:
+        patched: '2020-05-01T07:55:45.820Z'
+    - '@shopware-ag/eslint-config-base > eslint > lodash':
+        patched: '2020-05-01T07:55:45.820Z'
+    - '@shopware-ag/webpack-plugin-injector > webpack-merge > lodash':
+        patched: '2020-05-01T07:55:45.820Z'
+    - npm-check-updates > node-alias > lodash:
+        patched: '2020-05-01T07:55:45.820Z'
+    - optimize-css-assets-webpack-plugin > last-call-webpack-plugin > lodash:
+        patched: '2020-05-01T07:55:45.820Z'
+    - '@shopware-ag/eslint-config-base > eslint > inquirer > lodash':
+        patched: '2020-05-01T07:55:45.820Z'
+    - '@shopware-ag/eslint-config-base > eslint > table > lodash':
+        patched: '2020-05-01T07:55:45.820Z'
+    - babel-jest > @jest/transform > @babel/core > lodash:
+        patched: '2020-05-01T07:55:45.820Z'
+    - babel-jest > @jest/transform > @babel/core > @babel/helper-module-transforms > lodash:
+        patched: '2020-05-01T07:55:45.820Z'
+    - babel-jest > babel-plugin-istanbul > istanbul-lib-instrument > @babel/traverse > lodash:
+        patched: '2020-05-01T07:55:45.820Z'
+    - babel-jest > @jest/transform > @babel/core > @babel/helpers > @babel/traverse > lodash:
+        patched: '2020-05-01T07:55:45.820Z'
+    - babel-jest > babel-plugin-istanbul > istanbul-lib-instrument > @babel/traverse > @babel/generator > lodash:
+        patched: '2020-05-01T07:55:45.820Z'
+    - babel-jest > @jest/transform > babel-plugin-istanbul > istanbul-lib-instrument > @babel/traverse > lodash:
+        patched: '2020-05-01T07:55:45.820Z'
+    - babel-jest > babel-preset-jest > babel-plugin-jest-hoist > @types/babel__traverse > @babel/types > lodash:
+        patched: '2020-05-01T07:55:45.820Z'
+    - babel-jest > @jest/transform > @babel/core > @babel/helper-module-transforms > @babel/helper-replace-supers > @babel/traverse > lodash:
+        patched: '2020-05-01T07:55:45.820Z'
+    - babel-jest > babel-plugin-istanbul > istanbul-lib-instrument > @babel/traverse > @babel/helper-split-export-declaration > @babel/types > lodash:
+        patched: '2020-05-01T07:55:45.820Z'
+    - babel-jest > @jest/transform > babel-plugin-istanbul > istanbul-lib-instrument > @babel/traverse > @babel/generator > lodash:
+        patched: '2020-05-01T07:55:45.820Z'
+    - babel-jest > @jest/transform > @babel/core > @babel/helper-module-transforms > @babel/helper-replace-supers > @babel/traverse > @babel/generator > lodash:
+        patched: '2020-05-01T07:55:45.820Z'
+    - babel-jest > @jest/transform > babel-plugin-istanbul > istanbul-lib-instrument > @babel/traverse > @babel/helper-split-export-declaration > @babel/types > lodash:
+        patched: '2020-05-01T07:55:45.820Z'
+    - babel-jest > babel-plugin-istanbul > istanbul-lib-instrument > @babel/traverse > @babel/helper-function-name > @babel/template > @babel/types > lodash:
+        patched: '2020-05-01T07:55:45.820Z'
+    - babel-jest > @jest/transform > @babel/core > @babel/helper-module-transforms > @babel/helper-replace-supers > @babel/traverse > @babel/helper-split-export-declaration > @babel/types > lodash:
+        patched: '2020-05-01T07:55:45.820Z'
+    - babel-jest > @jest/transform > babel-plugin-istanbul > istanbul-lib-instrument > @babel/traverse > @babel/helper-function-name > @babel/template > @babel/types > lodash:
+        patched: '2020-05-01T07:55:45.820Z'
+    - babel-jest > @jest/transform > @babel/core > @babel/helper-module-transforms > @babel/helper-replace-supers > @babel/traverse > @babel/helper-function-name > @babel/template > @babel/types > lodash:
+        patched: '2020-05-01T07:55:45.820Z'
