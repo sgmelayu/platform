@@ -6,10 +6,16 @@
   "license": "MIT",
   "dependencies": {
     "@shopware-ag/e2e-testsuite-platform": "^1.2.4",
-    "cypress": "^4.5.0"
+    "cypress": "^4.5.0",
+    "snyk": "^1.364.0"
   },
   "engines": {
     "node": ">= 8.10.0",
     "npm": ">= 6.5.0"
-  }
+  },
+  "scripts": {
+    "snyk-protect": "snyk protect",
+    "prepare": "npm run snyk-protect"
+  },
+  "snyk": true
 }
