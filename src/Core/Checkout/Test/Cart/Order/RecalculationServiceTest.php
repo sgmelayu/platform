@@ -498,13 +498,8 @@ class RecalculationServiceTest extends TestCase
         static::assertSame(1, $newShippingCosts->getQuantity());
         static::assertSame(5.0, $newShippingCosts->getUnitPrice());
         static::assertSame(5.0, $newShippingCosts->getTotalPrice());
-        static::assertSame(2, $newShippingCosts->getCalculatedTaxes()->count());
-        static::assertEquals($shippingCosts->getTaxRules(), $newShippingCosts->getTaxRules());
-        static::assertEquals(
-            5,
-            $newShippingCosts->getCalculatedTaxes()->get('5')->getPrice()
-            + $newShippingCosts->getCalculatedTaxes()->get('19')->getPrice()
-        );
+
+        static::assertSame(0, $newShippingCosts->getCalculatedTaxes()->count());
     }
 
     public function testForeachLoopInCalculateDeliveryFunction(): void
@@ -1181,14 +1176,28 @@ class RecalculationServiceTest extends TestCase
             'deliveryTime' => $deliveryTimeData,
             'prices' => [
                 [
-                    'price' => '10.00',
-                    'currencyId' => Defaults::CURRENCY,
+                    'id' => Uuid::randomHex(),
+                    'currencyPrice' => [
+                        [
+                            'currencyId' => Defaults::CURRENCY,
+                            'net' => '10.00',
+                            'gross' => '10.00',
+                            'linked' => false,
+                        ],
+                    ],
                     'calculation' => 1,
                     'quantityStart' => 1,
                 ],
                 [
-                    'price' => 8.00,
-                    'currencyId' => Defaults::CURRENCY,
+                    'id' => Uuid::randomHex(),
+                    'currencyPrice' => [
+                        [
+                            'currencyId' => Defaults::CURRENCY,
+                            'net' => '8.00',
+                            'gross' => '8.00',
+                            'linked' => false,
+                        ],
+                    ],
                     'calculationRule' => [
                         'name' => 'check',
                         'priority' => 10,
@@ -1229,8 +1238,15 @@ class RecalculationServiceTest extends TestCase
             'active' => true,
             'prices' => [
                 [
-                    'price' => '15.00',
-                    'currencyId' => Defaults::CURRENCY,
+                    'id' => Uuid::randomHex(),
+                    'currencyPrice' => [
+                        [
+                            'currencyId' => Defaults::CURRENCY,
+                            'net' => '15.00',
+                            'gross' => '15.00',
+                            'linked' => false,
+                        ],
+                    ],
                     'rule' => [
                         'id' => $priceRuleId,
                         'name' => 'true',
@@ -1245,7 +1261,15 @@ class RecalculationServiceTest extends TestCase
                     'quantityStart' => 0,
                 ],
                 [
-                    'price' => '20.00',
+                    'id' => Uuid::randomHex(),
+                    'currencyPrice' => [
+                        [
+                            'currencyId' => Defaults::CURRENCY,
+                            'net' => '20.00',
+                            'gross' => '20.00',
+                            'linked' => false,
+                        ],
+                    ],
                     'currencyId' => Defaults::CURRENCY,
                     'rule' => [
                         'id' => $priceRuleId,
@@ -1293,8 +1317,15 @@ class RecalculationServiceTest extends TestCase
             'active' => true,
             'prices' => [
                 [
-                    'price' => '15.00',
-                    'currencyId' => Defaults::CURRENCY,
+                    'id' => Uuid::randomHex(),
+                    'currencyPrice' => [
+                        [
+                            'currencyId' => Defaults::CURRENCY,
+                            'net' => '15.00',
+                            'gross' => '15.00',
+                            'linked' => false,
+                        ],
+                    ],
                     'rule' => [
                         'id' => $priceRuleId,
                         'name' => 'true',
@@ -1310,8 +1341,15 @@ class RecalculationServiceTest extends TestCase
                     'quantityEnd' => 9,
                 ],
                 [
-                    'price' => '10.00',
-                    'currencyId' => Defaults::CURRENCY,
+                    'id' => Uuid::randomHex(),
+                    'currencyPrice' => [
+                        [
+                            'currencyId' => Defaults::CURRENCY,
+                            'net' => '10.00',
+                            'gross' => '10.00',
+                            'linked' => false,
+                        ],
+                    ],
                     'rule' => [
                         'id' => $priceRuleId,
                         'name' => 'true',
@@ -1361,8 +1399,15 @@ class RecalculationServiceTest extends TestCase
             'active' => true,
             'prices' => [
                 [
-                    'price' => '15.00',
-                    'currencyId' => Defaults::CURRENCY,
+                    'id' => Uuid::randomHex(),
+                    'currencyPrice' => [
+                        [
+                            'currencyId' => Defaults::CURRENCY,
+                            'net' => '15.00',
+                            'gross' => '15.00',
+                            'linked' => false,
+                        ],
+                    ],
                     'rule' => [
                         'id' => $priceRuleId,
                         'name' => 'true',
@@ -1378,7 +1423,15 @@ class RecalculationServiceTest extends TestCase
                     'quantityEnd' => 70,
                 ],
                 [
-                    'price' => '9.99',
+                    'id' => Uuid::randomHex(),
+                    'currencyPrice' => [
+                        [
+                            'currencyId' => Defaults::CURRENCY,
+                            'net' => '9.99',
+                            'gross' => '9.99',
+                            'linked' => false,
+                        ],
+                    ],
                     'currencyId' => Defaults::CURRENCY,
                     'rule' => [
                         'id' => $priceRuleId,

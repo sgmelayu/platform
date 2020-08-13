@@ -20,8 +20,7 @@
             "Flag/feature_next1797.php",
             "Flag/feature_next3722.php",
             "Flag/feature_next6009.php",
-            "Flag/feature_next6997.php",
-            "Flag/feature_next9225.php"
+            "Flag/feature_next9278.php"
         ]
     },
     "extra": {
@@ -47,7 +46,7 @@
         "ext-openssl": "*",
         "aws/aws-sdk-php": "3.133.6",
         "cocur/slugify": "4.0.0",
-        "composer/composer": "1.9.2",
+        "composer/composer": "1.10.10",
         "composer/semver": "1.5.1",
         "doctrine/annotations": "1.8.0",
         "doctrine/dbal": "2.10.1",

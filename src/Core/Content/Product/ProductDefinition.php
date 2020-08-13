@@ -67,7 +67,6 @@ use Shopware\Core\System\NumberRange\DataAbstractionLayer\NumberRangeField;
 use Shopware\Core\System\Tag\TagDefinition;
 use Shopware\Core\System\Tax\TaxDefinition;
 use Shopware\Core\System\Unit\UnitDefinition;
-use function Flag\next6997;
 
 class ProductDefinition extends EntityDefinition
 {
@@ -164,6 +163,7 @@ class ProductDefinition extends EntityDefinition
             new ChildCountField(),
             (new BlacklistRuleField())->addFlags(new ReadProtected(SalesChannelApiSource::class)),
             (new WhitelistRuleField())->addFlags(new ReadProtected(SalesChannelApiSource::class)),
+            (new BoolField('custom_field_set_selection_active', 'customFieldSetSelectionActive'))->addFlags(new Inherited()),
 
             (new TranslatedField('metaDescription'))->addFlags(new Inherited()),
             (new TranslatedField('name'))->addFlags(new Inherited(), new SearchRanking(SearchRanking::HIGH_SEARCH_RANKING)),
@@ -251,16 +251,14 @@ class ProductDefinition extends EntityDefinition
             (new ListField('variation', 'variation', StringField::class))->addFlags(new Runtime())
         );
 
-        if (next6997()) {
-            $collection->add(
-                (new FkField('product_feature_set_id', 'featureSetId', ProductFeatureSetDefinition::class))
-                    ->addFlags(new Inherited())
-            );
-            $collection->add(
-                (new ManyToOneAssociationField('featureSet', 'product_feature_set_id', ProductFeatureSetDefinition::class, 'id'))
-                    ->addFlags(new Inherited())
-            );
-        }
+        $collection->add(
+            (new FkField('product_feature_set_id', 'featureSetId', ProductFeatureSetDefinition::class))
+                ->addFlags(new Inherited())
+        );
+        $collection->add(
+            (new ManyToOneAssociationField('featureSet', 'product_feature_set_id', ProductFeatureSetDefinition::class, 'id'))
+                ->addFlags(new Inherited())
+        );
 
         return $collection;
     }

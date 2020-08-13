@@ -11,7 +11,7 @@ Table of contents
 ----------------
 * [Table of contents](#table-of-contents)
 * [NEXT](#NEXT)
-* [6.3.0](#630)
+* [6.3.0.0](#630)
   - [Administration](#administration)
   - [Core](#core)
   - [Storefront](#storefront)
@@ -20,16 +20,121 @@ NEXT
 ----------------
 
 #### Administration
+* Added new privileges service: 
+`src/Administration/Resources/app/administration/src/module/sw-property/acl/index.js`
+* Added prop `savePermission` to `sw-language-switch/index.js`
+* Added new computed props to `sw-property-option-list/index.js`
+    * `allowInlineEdit`
+    * `tooltipAdd`
+    * `disableAddButton`
+* Extended `sw-category-detail-base/index.js`
+    * Added lifecycle hook `created`
+    * Added methods `createdComponent` and `loadProductStreamPreview`
+    * Added computed props `productStreamRepository`, `productAssignmentTypes` and `productStreamInvalidError`
+    * Added data props `productStreamFilter` and `productStreamInvalid`
+    * Extend `mapPropertyErrors` with props `productStreamId` and `productAssignmentType`
+* Added prop `plainAppearance` to `sw-data-grid` which provides an alternative and more minimalistic design
+* Added prop `absolute` to `sw-empty-state` which is `true` by default
+* Added prop `showDescription` to `sw-empty-state` which is `true` by default
+* Added prop `selectLabel` to `sw-many-to-many-assignment-card` in order to show a label for the default select element
+* Added slot `prepend-select` to `sw-many-to-many-assignment-card` in order to show additional content before the select element
+* Added new event `paginate` to `paginateGrid` method in `sw-many-to-many-assignment-card`
+* Added slot `select` to `sw-many-to-many-assignment-card` in order to override the default select element
+* Added slot `data-grid` to `sw-many-to-many-assignment-card` in order to override the data grid component
+* Added new component `sw-product-stream-grid-preview` which displays a product stream preview inside a `sw-data-grid`
+* Added support for custom field set selection to `sw-custom-field-set-renderer`
+    * Added property `showCustomFieldSetSelection`
+* Added support for inheritance to `sw-custom-field-set-renderer`
+    * Added property `parentEntity`
+* Added ACL permissions to categories module
+* Added property `disabled` to `sw-many-to-many-assignment-card` component
+* Added property `disabled` to `sw-media-upload-v2` component
+* Added property `contextMenuTooltipText` to `sw-tree-item` component
+* Added property `allowNewCategories` to `sw-tree-item` component
+* Added property `allowDeleteCategories` to `sw-tree-item` component
+* Added property `allowDeleteCategories` to `sw-tree` component
+* Added property `allowEdit` to `sw-category-tree` component
+* Added property `allowCreate` to `sw-category-tree` component
+* Added property `allowDelete` to `sw-category-tree` component
+* Added computed `contextMenuTooltipText` to `sw-category-tree` component
+* Added property `disabled` to `sw-cms-list-item` component
+* Added method `onItemClick` to `sw-cms-list-item` component
+* Added property `disabled` to `sw-seo-url` component
+* Deprecated block `sw_product_detail_properties_empty_state_text_empty` in `sw-product-detail-properties` component.
+* Added prop `salesChannelId` to `sw-order-line-items-grid-sales-channel/index.js`
+* Added prop `salesChannelId` to `sw-order-product-select/index.js`
+* Changed tax id of newly generated variants to null in order to inherit from the parent product
+* Fixed template factory so it is possible again to override nested blocks in one `Component.override()`
 
 #### Core
 
 * Changed `keyword` fields in Elasticsearch to normalize to lower case
 * Changed temporary filename of sitemap to avoid conflicts with other installations
 * Removed required flag of customer_id
+* Added `Logger` to `Shopware\Elasticsearch\Framework\ClientFactory::createClient`
+* Added event `GenericPageLoadedEvent`, which is fired once a page is requested via the `GenericPageLoader`
+* Changed the way the `CheckoutConfirmPage` is loaded. It now uses the `GenericPageLoader` as well.
+* Deprecated the constructor of `Shopware\Storefront\Page\Checkout\Confirm\CheckoutConfirmPage`. Use `CheckoutConfirmPage::createFrom` instead.
+* Added fields in `src/Core/Content/Category/CategoryDefinition.php`
+    * `StringField` with `product_assignment_type`
+    * `FkField` with `product_stream_id`
+    * `ManyToOneAssociationField` with `product_stream_id`
+    * Extend defaults with `productAssignmentType` type `product`
+* Added new constants in `src/Core/Content/Category/CategoryDefinition.php`
+    * `PRODUCT_ASSIGNMENT_TYPE_PRODUCT` with value `product`
+    * `PRODUCT_ASSIGNMENT_TYPE_PRODUCT_STREAM` with value `product_stream`
+* Added new methods in `src/Core/Content/ProductStream/ProductStreamEntity.php`
+    * `getCategories`
+    * `setCategories`
+* Added new methods in `src/Core/Content/Category/CategoryEntity.php`
+    * `getProductStream`
+    * `setProductStream`
+    * `getProductStreamId`
+    * `setProductStreamId`
+    * `getProductAssignmentType`
+    * `setProductAssignmentType`
+* Added migration `src/Core/Migration/Migration1592837424AddProductTypeToCategory.php`
+* Added `OneToManyAssociationField` with `categories` and `product_stream_id` in `src/Core/Content/ProductStream/ProductStreamDefinition.php`
+* Added arguments `categoryRepository` and `productStreamBuilder` to `src/Core/Content/Product/SalesChannel/Listing/ProductListingRoute.php`
+    * Added arguments `category.repository` and `Shopware\Core\Content\ProductStream\Service\ProductStreamBuilder` to service `Shopware\Core\Content\Product\SalesChannel\Listing\ProductListingRoute` in `src/Core/Content/DependencyInjection/product.xml`
+* Deprecated `.php_cs.dist` cs-fixer config file. Use Easy Coding Standard instead.
+* Plugins that are not installed can't be updated anymore. If you try to update an plugin that is not yet installed with `bin/console plugin:update` the plugin will be skipped.
+* Added bool `custom_field_set_selection_active` to ProductDefinition
+* Added many to many association `customFieldSets` to ProductDefinition
+* Added new entity `product_custom_field_set`
+* Added possibility to use a write operation without actual data, which then does nothing
+* Added generation of order delivery positions when editing an order in the administration
+* Changed the way `senderEmail` is resolved in `\Shopware\Core\Content\MailTemplate\Service\MailService`. It's now possible to override it with `$data['senderEmail']`. 
+* Thumbnails are no longer being upscaled when the original image is smaller than the desired thumbnail size
+* Added new constant `DISPLAY_TYPE_MEDIA` in `Shopware\Core\Content\Property\PropertyGroupDefinition`
 
 #### Storefront
 
-6.3.0
+* Added new plugin class `clear-input.plugin.js`
+* Added new event methods `onOpenButtonClick`, `onCloseButtonClick` and `onClearButtonClick` in `date-picker.plugin.js`
+* Added new method `registerEventListeners` in `date-picker.plugin.js`
+* Added new property `selectors` to `static options` in `date-picker.plugin.js` with the following values:
+   * `openButton: null`
+   * `closeButton: null`
+   * `clearButton: null`
+* We extended setup of the `storefront:hot-proxy`
+    * The proxy's assets port is now configurable.
+        * Using npm: run `APP_URL="<your url>" STOREFRONT_ASSETS_PORT=<some port> PROJECT_ROOT=<path to your root folder>/ npm run hot-proxy` from the storefronts js directory.
+    * The default port is still port 9999.
+* Fixed to show the listing loader for `cms-element-product-listing`
+    * Added `cmsProductListingWrapperSelector` property in `listing.plugin.js`
+    * Added `addLoadingElementLoaderClass` function in `listing.plugin.js`
+    * Added `removeLoadingElementLoaderClass` function in `listing.plugin.js`
+* Added block `page_checkout_item_quantity_number` in `page/checkout/checkout-item.html.twig` to other place can inherit
+    * Replace block `page_checkout_item_quantity` to `page_checkout_item_quantity_form` in `account/order/line-item.html.twig`
+* Fixed wrong meta tag value `twitter:card` in `storefront/layout/meta.html.twig`
+* Fixed `packUnit` and `packUnitPlural` not being properly accessed in `buy-widget-form.html.twig`
+* Deprecated template component/listing/breadcrumb.html.twig. Breadcrumb will be handled by generic layout/breadcrumb.html.twig.
+* Deprecated template component/product/breadcrumb.html.twig. Breadcrumb will be handled by generic layout/breadcrumb.html.twig.
+* Deprecated block page_product_detail_breadcrumb in page/product-detail/index.html.twig. Breadcrumb will be handled by block base_breadcrumb in storefront/base.html.twig.
+* Fixed switching to domains with upper case paths like `https://example.com/de-DE`
+
+6.3.0.0
 ----------------
 
 #### Administration
@@ -141,7 +246,7 @@ NEXT
 * Refactor `sw-settings-user-detail`
     * Added `newPasswordConfirm`
     * Fixed issue when saving new admin password
-    * Disabled `change` button if passwords doesnt match
+    * Disabled `change` button if passwords do not match
 * Added language switch to Scale Units list page to translate scale units
 * Added tooltips to the toolbar of text editor
 * Added isInlineEdit property to component `sw-text-editor-toolbar`
@@ -217,13 +322,11 @@ NEXT
 * Added ACL permissions to currency module in settings
 * Added `customFieldSetCriteria` computed property to `sw-customer-detail-base`
 * Added `createdComponent` method to `sw-customer-detail-base`
-* Added `page`, `limit`, and `total` as required prop to `sw-custom-field-list`
-* `sw-custom-field-list` emits `custom-field-change` event
-* `sw-custom-field-list` emits `page-change` event
 * Added computed `customFieldRepository` to `sw-custom-field-list`
-* Added computed `customFieldCriteria` to `sw-custom-field-list`
-* Added method `setTotalOfCustomFields` to `sw-custom-field-list`
 * Added method `onPageChange` to `sw-custom-field-list`
+* Added method `loadCustomFields` in `sw-custom-field-list/index.js` which is responsible to load, paginate and search the custom fields directly via the API.
+* Add hook `created` and method `createdComponent` to `sw-custom-field-list/index.js`
+* Deprecated computed `filteredCustomFields` in `sw-custom-field-list/index.js`. The search is now done via request against the API.
 * `repository.data.js` now sends a `sw-currency-id` header when setting the option `currencyId`
 * `sw-entity-grid` now emits a new event `paginate` in method `paginate`
 * `sw-entity-listing` methods `sort` and `paginate` can now return `false` when using the boolean option `useCustomSort` on a grid column.
@@ -764,10 +867,19 @@ Refactored `src/module/sw-plugin/snippet/en-GB.json`:
 * Added block `sw_product_detail_properties_empty_state__inherit_switch` to component `sw-product-detail-properties`
 * Added block `sw_product_detail_properties_assginment` to component `sw-product-detail-properties`
 * Added block `sw_product_detail_properties_empty` to component `sw-product-detail-properties`
+* Changed Vue `asset` filter to remove double slashes
+* Fixed active state in the flyout navigation
+* Fixed `sw-modal` styles for `variant="full"` to stay at full page size
+* Custom fields assigned to a category entity can now also be configured in categories of type "link"
+* Added block `sw_customer_list_sidebar_filter_items` to `sw-customer-list` allow easier adding filters to the sidebar
+* Added block `sw_corder_list_sidebar_filter_items` to `sw-order-list` allow easier adding filters to the sidebar
+* Fixed the sidebar with filters that wasn't displayed in the orderlist
+* Fix truncated text in `sw-property-search`. Changed prop `flex` of `sw-grid-column` to `minmax(0, 1fr)`
+* Fixed a bug where template resolving stopped the application from running if a `Component.override` or `Component.extend` was executed for a base component which was not registered. The application resolves this components to `false` and a `unknown custom element` exception will now be raised only if used in a template.
 
 #### Core
 * Deprecated `\Shopware\Core\Checkout\Cart\Tax\TaxRuleCalculator`, use `\Shopware\Core\Checkout\Cart\Tax\TaxCalculator` instead
-* Added `Criteria $criteria` parameter in store api routes. The parameter will be required in 6.4. At the moment the parameter is commented out in the `*AbstractRoute`, but it is already passed:
+* Added `Criteria $criteria` parameter in store api routes. The parameter will be required in 6.4. At the moment the parameter is commented out in the `*AbstractRoute`, but the following parameters are already passed:
     * `Shopware\Core\Checkout\Customer\SalesChannel\AbstractCustomerRoute`
     * `Shopware\Core\Checkout\Order\SalesChannel\AbstractOrderRoute`
     * `Shopware\Core\Checkout\Payment\SalesChannel\AbstractPaymentMethodRoute`
@@ -887,7 +999,7 @@ Refactored `src/module/sw-plugin/snippet/en-GB.json`:
 * Removed `source` parameter in api requests
 * Removed `Shopware\Core\Framework\DataAbstractionLayer\Search\Criteria::$source`
 * Removed `Shopware\Core\Framework\DataAbstractionLayer\EntityExtensionInterface`
-* `Shopware\Core\Framework\Plugin\PluginManagementService::uploadPlugin`, context parameter is now required
+* `Shopware\Core\Framework\Plugin\PluginManagementService::uploadPlugin` context parameter is now required
 * Removed `Shopware\Core\Framework\Routing\RouteScopeInterface`
 * Removed `Shopware\Core\Framework\Adapter\Twig\TemplateFinder::registerBundles`
 * Removed `Shopware\Core\Framework\Adapter\Twig\TemplateFinderInterface::registerBundles`
@@ -914,7 +1026,7 @@ Refactored `src/module/sw-plugin/snippet/en-GB.json`:
     * `featureSets`
     * `properties.group`
 * Added new `asset`, `sitemap` and  `theme` asset package
-* Added new class `\Shopware\Core\Framework\Adapter\Asset\FlysystemLastModifiedVersionStrategy` which adds cache bustering to asset urls with usage of flysystem adapters
+* Added new class `\Shopware\Core\Framework\Adapter\Asset\FlysystemLastModifiedVersionStrategy` which adds cache busting to asset urls with usage of flysystem adapters
 * Added new class `\Shopware\Core\Framework\Adapter\Asset\FallbackUrlPackage` which adds a fallback to shop URL if the given URL is empty
 * Added new class `\Shopware\Core\Framework\DependencyInjection\CompilerPass\FilesystemConfigMigrationCompilerPass` which fixes backward compatibility in the filesystem configs
 * Changed `\Shopware\Core\Content\Seo\SalesChannel\StoreApiSeoResolver` to consider sales channel entities.
@@ -953,14 +1065,20 @@ Refactored `src/module/sw-plugin/snippet/en-GB.json`:
 * Allow specifying translations for languages that don't exist. These translations will now be silently skipped.
   This used to throw the exception `\Shopware\Core\Framework\Routing\Exception\LanguageNotFoundException`.
 * Added check to prevent mails being sent when `\Shopware\Core\Content\MailTemplate\Service\Event\MailBeforeSentEvent::stopPropagation` was called before
-* Added `Logger` to `Shopware\Elasticsearch\Framework\ClientFactory::createClient`
+* Increase the API version to v3
+    * API version v1 is removed
+    * API version v2 will be removed with next major version
+* Added `ProductCartProcessor::ALLOW_PRODUCT_LABEL_OVERWRITES`
+* Added `user:change-password` command to set the password of an administration user
+* Added `HttpCacheGenerateKeyEvent` to allow changing the hash
+* It is now possible to override the generic API routes with a `config/routes_overwrite.xml` in the bundle or plugin
 
 #### Storefront
 * Added plugin injection in hot mode
 * Deprecated `window.accessKey` and `window.contextToken`, the variables contains now an empty string
 * Removed `HttpClient()` constructor parameters in `src/Storefront/Resources/app/storefront/src/service/http-client.service.js`
-* Fix timezone of `orderDate` in ordergrid
-* Added image lazy loading capability to the `ZoomModalPlugin` which allows to load images only if the zoom modal was opened
+* Fix timezone of `orderDate` in the ordergrid
+* Added an image lazy loading capability to the `ZoomModalPlugin` which allows image loading only if the zoom modal is opened
 * Refactored Webpack configuration files to one single file
     * Removed build/utils.js
     * Removed build/webpack.base.config.js
@@ -1004,7 +1122,10 @@ Refactored `src/module/sw-plugin/snippet/en-GB.json`:
     * `component_offcanvas_product_variants` in `src/Storefront/Resources/views/storefront/component/checkout/offcanvas-item.html.twig`
     * `page_checkout_item_info_variants` in `src/Storefront/Resources/views/storefront/page/checkout/checkout-item.html.twig`
 * Fix sw_sanitize filter throwing when the parameter options is null
-* We extended setup of the `storefront:hot-proxy`
-      * The proxy's assets port is now configurable.
-        * Using npm: run `APP_URL="<your url>" STOREFRONT_ASSETS_PORT=<some port> PROJECT_ROOT=<path to your root folder>/ npm run hot-proxy` from the storefronts js directory.
-      * The default port is still port 9999.
+* Deprecated twig variable `accounTypeRequired` in `address-form.html.twig`, use `accountTypeRequired` instead
+* Fixed property sorting for multi language shops
+* Added an additional class to the cart offcanvas called `cart-offcanvas`
+* Added all language flags according to language packs
+* Deprecated global `apiAccessUrl`
+* Deprecated `StoreApiClient`, use storefront controller instead
+* Deprecated `Shopware\Storefront\Controller\CsrfController::getApiAccess`, use storefront controller instead

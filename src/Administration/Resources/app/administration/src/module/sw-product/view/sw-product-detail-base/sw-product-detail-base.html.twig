@@ -132,8 +132,7 @@
 
         {% block sw_product_detail_base_feature_set_card %}
             <sw-card :title="$tc('sw-product.featureSets.cardTitle')"
-                     :isLoading="loading.product"
-                     v-if="next6997">
+                     :isLoading="loading.product">
                 {% block sw_product_detail_base_feature_set_form %}
                     <sw-product-feature-set-form></sw-product-feature-set-form>
                 {% endblock %}
@@ -142,7 +141,7 @@
 
         {% block sw_product_detail_attribute_sets %}
             <sw-card :title="$tc('sw-settings-custom-field.general.mainMenuItemGeneral')"
-                     v-if="customFieldSetsArray.length > 0"
+                     v-if="customFieldSetsArray.length > 0 && !isLoading"
                      :isLoading="loading.product || loading.customFieldSets">
                     <sw-custom-field-set-renderer
                             :entity="product"

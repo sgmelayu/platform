@@ -1,8 +1,11 @@
+import template from './sw-settings-custom-field-set-create.html.twig';
+
 const { Component } = Shopware;
 const { Criteria } = Shopware.Data;
 const utils = Shopware.Utils;
 
 Component.extend('sw-settings-custom-field-set-create', 'sw-settings-custom-field-set-detail', {
+    template,
 
     beforeRouteEnter(to, from, next) {
         if (to.name.includes('sw.settings.custom.field.create') && !to.params.id) {
