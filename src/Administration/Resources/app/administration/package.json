@@ -64,7 +64,7 @@
     "webpack": "4.42.1",
     "webpack-bundle-analyzer": "3.4.1",
     "webpack-cli": "3.3.11",
-    "webpack-dev-server": "3.11.0",
+    "webpack-dev-server": "4.0.0",
     "webpack-merge": "4.2.1",
     "worker-loader": "2.0.0"
   },
