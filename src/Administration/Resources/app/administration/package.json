@@ -50,7 +50,7 @@
     "md5-es": "1.8.2",
     "mini-css-extract-plugin": "0.8.0",
     "npm-check-updates": "3.1.20",
-    "optimize-css-assets-webpack-plugin": "5.0.3",
+    "optimize-css-assets-webpack-plugin": "5.0.5",
     "terser-webpack-plugin": "2.3.5",
     "twig": "1.13.3",
     "uuid": "3.3.2",
