@@ -5,9 +5,13 @@
   "description": "Shopware Administration bundle",
   "scripts": {
     "lerna": "lerna",
-    "postinstall": "echo '! Deprecation Warning: lerna is marked as deprecated in Shopware version 6.2 and will be removed with 6.4'"
+    "postinstall": "echo '! Deprecation Warning: lerna is marked as deprecated in Shopware version 6.2 and will be removed with 6.4'",
+    "snyk-protect": "snyk protect",
+    "prepare": "npm run snyk-protect"
   },
   "dependencies": {
-    "lerna": "3.16.4"
-  }
+    "lerna": "3.16.4",
+    "snyk": "^1.316.1"
+  },
+  "snyk": true
 }
