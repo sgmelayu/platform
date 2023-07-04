@@ -14,7 +14,7 @@
     "cy:run:firefox": "cypress run --browser firefox"
   },
   "dependencies": {
-    "@babel/core": "^7.7.7",
+    "@babel/core": "^7.22.6",
     "@shopware-ag/e2e-testsuite-platform": "2.0.0",
     "cypress-multi-reporters": "^1.2.3",
     "mocha": "^7.0.0",
