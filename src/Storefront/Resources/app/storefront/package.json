@@ -43,14 +43,14 @@
     "nunito-fontface": "0.7.3",
     "object-fit-images": "3.2.4",
     "object-fit-polyfill": "0.1.0",
-    "optimize-css-assets-webpack-plugin": "5.0.3",
+    "optimize-css-assets-webpack-plugin": "5.0.5",
     "popper.js": "1.15.0",
     "query-string": "6.8.2",
-    "sass-resources-loader": "2.0.1",
-    "stylelint-webpack-plugin": "0.10.5",
+    "sass-resources-loader": "2.0.2",
+    "stylelint-webpack-plugin": "1.0.0",
     "terser-webpack-plugin": "2.2.3",
     "tiny-slider": "2.9.2",
-    "webpack": "4.38.0",
+    "webpack": "5.0.0",
     "webpackbar": "3.2.0"
   },
   "devDependencies": {
