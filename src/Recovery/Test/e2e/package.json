@@ -5,8 +5,8 @@
   "description": "E2E Test suite for the installer",
   "license": "MIT",
   "dependencies": {
-    "@shopware-ag/e2e-testsuite-platform": "^1.2.4",
-    "cypress": "^4.11.0"
+    "@shopware-ag/e2e-testsuite-platform": "^3.0.7",
+    "cypress": "^7.6.0"
   },
   "engines": {
     "node": ">= 8.10.0",
