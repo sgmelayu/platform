@@ -47,7 +47,7 @@
     "popper.js": "1.15.0",
     "query-string": "6.8.2",
     "sass-resources-loader": "2.0.1",
-    "stylelint-webpack-plugin": "0.10.5",
+    "stylelint-webpack-plugin": "1.0.0",
     "terser-webpack-plugin": "2.2.3",
     "tiny-slider": "2.9.2",
     "webpack": "4.38.0",
