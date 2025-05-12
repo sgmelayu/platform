@@ -27,7 +27,7 @@
     "generate-api-docs": "./node_modules/.bin/jsdoc src -r -c jsdoc.config.js"
   },
   "dependencies": {
-    "@babel/runtime": "7.5.5",
+    "@babel/runtime": "7.26.10",
     "@shopware-ag/eslint-config-base": "1.0.0",
     "@shopware-ag/webpack-copy-after-build": "1.0.1",
     "@shopware-ag/webpack-kill-process-on-failed-build": "1.0.0",
